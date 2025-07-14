@@ -13,8 +13,6 @@ st.set_page_config(page_title="Goal based Medical Triage Assistant",layout="cent
 st.title("Goal based Medical Triage Assistant")
 st.markdown("Describe your health condition or symptoms.The AI will decide wheather you need medical assistance or not")
 
-user_input=st.text_area("Describe your symptoms or how you're feeling")
-
 if "chat_history" not in st.session_state:
   st.session_state.chat_history=[]
 
@@ -32,10 +30,10 @@ if submitted and user_input.strip() != "":
              "content":'''You are a goal-based medical assistant.Your goal is to analyze user symptoms and advise one of the following
              1. Rest at home, 2.consult a doctor, 3.Go to clinic,Emergency.Be cautious.Ask follow-up questions.Be clear and structured in response.'''
             }
-        ]+st.session.session_state.chat_history
+        ]+st.session_state.chat_history
 
         response=client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="llama3-70b-8192",
             messages=messages,
             temperature=0.5,
             max_tokens=800
